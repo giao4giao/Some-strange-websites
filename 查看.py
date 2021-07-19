@@ -30,7 +30,7 @@ for row in cursor:
 cursor = c.execute("SELECT id, address ,title from 网址与标题")
 cursor=[i for i in cursor if str(i[2]).find('for Sale')<0 and i[2].find('域名售卖')<0]
 cursor=[i for i in cursor if i[2].find('没有找到站点')<0 and str(i[2]).find('for purchase')<0 and str(i[2]).find('for sale')<0 and str(i[2]).find('HugeDomains')<0 and str(i[2]).find('已过期')<0]
-l=['<tr><th>{}</th><th><a href={}>{}</a></th></tr>'.format('{}',row[1],(row[2].replace('{'+row[2].split('{')[-1].split('}')[0]+'}','') if not row[2]=='' else '数据库内容为空，自动加字(点击可能有惊喜)')) for row in cursor]
+l=['<tr><th>{}</th><th><a href={}>{}</a></th></tr>'.format('{}',row[1],(row[2].replace('{'+row[2].split('{')[-1].split('}')[0]+'}','') if not row[2].strip()=='' else '数据库内容为空，自动加字(点击可能有惊喜)')) for row in cursor]
 
 
 l=[l[i].format(str(i+1)) for i in range(len(l))]
